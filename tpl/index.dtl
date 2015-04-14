@@ -1,4 +1,12 @@
 {% extends "layout.dtl" %}
 {% block content %}
 <h1>Hello, {{ username | default : "stranger" }}!</h1>
+
+<form method="GET" action="/">
+  <input type="text" name="username" value="{{username}}" placeholder="Enter your name"/>
+  <input type="submit" value="Change name" />
+</form>
+<div class="center">
+  <a href="/">Clear name</a>
+</div>
 {% endblock %}

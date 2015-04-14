@@ -1,4 +1,7 @@
 {% extends "layout.dtl" %}
 {% block content %}
 <h1>URL <span style="color:red;">{{ url }}</span> does not exists.</h1>
+<div class="center">
+  <a href="/">Back to index</a>
+</div>
 {% endblock %}
