@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Webserver</title>
-</head>
-<body>
-{% block content %}{% endblock %}
-</body>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    {% block content %}
+    {% endblock %}
+    <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+  </body>
 </html>
