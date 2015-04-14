@@ -15,21 +15,14 @@
 %% ===================================================================
 
 dispatch_rules() ->
-    Static = fun(Filetype) ->
-        {lists:append(["/", Filetype, "/[...]"]), cowboy_static, [
-            {directory, {priv_dir, webserver, [list_to_binary(Filetype)]}},
-            {mimetypes, {fun mimetypes:path_to_mimes/2, default}}
-        ]}
-    end,
-    cowboy_router:compile([
-        {'_', [
-            Static("css"),
-            Static("js"),
-            Static("img"),
-            {"/", index_handler, []},
-            {'_', notfound_handler, []}
-        ]}
-    ]).
+    cowboy_router:compile([{'_',
+                [
+                    {"/css/[...]", cowboy_static, {dir, "./priv/css"}},
+                    {"/js/[...]", cowboy_static, {dir, "./priv/js"}},
+                    {"/", index_handler, []},
+                    {'_', notfound_handler, []}
+                ]
+            }]).
 
 %% ===================================================================
 %% Application callbacks
@@ -37,12 +30,12 @@ dispatch_rules() ->
 
 start(_StartType, _StartArgs) ->
     Dispatch = dispatch_rules(),
-    Port = 8008,
-    {ok, _} = cowboy:start_http(http_listener, 100,
+    Port = 8080,
+    {ok, _} = cowboy:start_http(http, 100,
         [{port, Port}],
         [{env, [{dispatch, Dispatch}]}]
-    ),
-    webserver_sup:start_link().
+    ).
+    %webserver_sup:start_link().
 
 stop(_State) ->
     ok.

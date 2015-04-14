@@ -8,7 +8,7 @@
     c_tpl/0, c_tpl/1, c_tpl/2
 ]).
 
--define(APPS, [crypto, ranch, cowboy, webserver]).
+-define(APPS, [crypto, ranch, cowlib, cowboy, webserver]).
 
 %% ===================================================================
 %% API functions

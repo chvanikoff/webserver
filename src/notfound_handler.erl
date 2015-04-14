@@ -1,14 +1,11 @@
 -module(notfound_handler).
--behaviour(cowboy_http_handler).
-%% Cowboy_http_handler callbacks
--export([
-    init/3,
-    handle/2,
-    terminate/3
-]).
 
-init({tcp, http}, Req, _Opts) ->
-    {ok, Req, undefined_state}.
+-behaviour(cowboy_http_handler).
+
+-export([ init/3, handle/2, terminate/3 ]).
+
+init(_Transport, Req, _Options) ->
+    {ok, Req, no_state}.
 
 handle(Req, State) ->
     {URL, Req2} = cowboy_req:url(Req),
